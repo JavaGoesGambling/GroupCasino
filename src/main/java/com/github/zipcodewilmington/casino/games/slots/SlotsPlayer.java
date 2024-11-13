@@ -3,5 +3,5 @@ package com.github.zipcodewilmington.casino.games.slots;
 /**
  * Created by leon on 7/21/2020.
  */
-public class SlotsPlayer {
+public class SlotsPlayer implements PlayerInterface, //GamblingGamePlayer{
 }
