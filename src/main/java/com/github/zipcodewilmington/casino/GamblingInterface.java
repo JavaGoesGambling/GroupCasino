@@ -16,13 +16,8 @@ public interface GamblingInterface extends GameInterface {
     boolean canAfford();
 
     /**
-     * removes money from player's balance
+     * updates their balance if they win/lose
      */
-    int takeMoney(bet);
-
-    /**
-     * adds money to player's balance
-     */
-    int giveMoney(bet);
+    int updateBalance();
 }
 

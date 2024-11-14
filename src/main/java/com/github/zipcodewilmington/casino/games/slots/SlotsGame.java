@@ -43,4 +43,34 @@ public class SlotsGame implements GameInterface, GamblingInterface {
     public void run() {
 
     }
+
+    @Override
+    public void playTurn() {
+
+    }
+
+    @Override
+    public boolean checkWin() {
+        return false;
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public int getRandom() {
+        return 0;
+    }
+
+    @Override
+    public int getBet() {
+        return 0;
+    }
+
+    @Override
+    public boolean canAfford() {
+        return false;
+    }
 }

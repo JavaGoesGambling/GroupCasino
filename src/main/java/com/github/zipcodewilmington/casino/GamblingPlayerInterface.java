@@ -12,8 +12,4 @@ public interface GamblingPlayerInterface extends PlayerInterface {
      */
     int checkBalance();
 
-    /**
-     * lets gambling player update their balance if they win/lose
-     */
-    int updateBalance();
 }

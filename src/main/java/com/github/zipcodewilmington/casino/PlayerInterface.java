@@ -18,9 +18,4 @@ public interface PlayerInterface {
      * @return whatever return value you would like
      */
     <SomeReturnType> SomeReturnType play();
-
-    /**
-     * determines if player has won
-     */
-    boolean hasWon();
 }
