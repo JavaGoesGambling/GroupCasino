@@ -24,6 +24,7 @@ import com.github.zipcodewilmington.utils.IOConsole;
  */
 public class Casino implements Runnable {
     private final IOConsole console = new IOConsole(AnsiColor.BLUE);
+    public CasinoAccount getCurrentPlayerAcoount;
 
     @Override
     public void run() {
@@ -91,5 +92,9 @@ public class Casino implements Runnable {
         PlayerInterface player = (PlayerInterface)playerObject;
         game.add(player);
         game.run();
+    }
+
+    public CasinoAccount getCurrentPlayerAcoount() {
+        return getCurrentPlayerAcoount;
     }
 }

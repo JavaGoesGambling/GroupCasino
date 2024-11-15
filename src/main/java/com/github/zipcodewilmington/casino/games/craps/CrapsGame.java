@@ -4,19 +4,19 @@ package com.github.zipcodewilmington.casino.games.craps;
 import com.github.zipcodewilmington.casino.GamblingInterface;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
-import com.github.zipcodewilmington.casino.mechanics.Dice;
 import com.github.zipcodewilmington.utils.IOConsole;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CrapsGame extends Dice implements GameInterface, GamblingInterface {
+public class CrapsGame implements GameInterface, GamblingInterface {
     private List<PlayerInterface> players = new ArrayList<>();
     private double bet;
     private Random random = new Random();
     private boolean isWin;
     private int point;
     private int accountBalance;
+    private PlayerInterface currentPlayer;
 
     public CrapsGame(){
         this.point = 0;
@@ -84,11 +84,11 @@ public class CrapsGame extends Dice implements GameInterface, GamblingInterface 
 
     @Override
     public int updateBalance() {
-//        if (isWin) {
-//            int newBalance = getBalance() + bet;
-//
-//        }
        return 0;
+    }
+
+    private int getAccountBalance() {
+        return 1000;
     }
 
     @Override
@@ -126,32 +126,32 @@ public class CrapsGame extends Dice implements GameInterface, GamblingInterface 
     }
 
     private void Roll(PlayerInterface player, int initialRoll) {
-        System.out.println(players + " rolled a " + initialRoll);
+        System.out.println(player + " rolled a " + initialRoll);
 
         if (initialRoll == 7 || initialRoll == 11) {
             isWin = true;
-            System.out.println(players + " wins with a roll of " + initialRoll + "!");
-            //add winnings here
+            System.out.println(player + " wins with a roll of " + initialRoll + "!");
+            player.getAccountBalance((int) bet); //add winnings here
         } else if (initialRoll == 2 || initialRoll == 3 || initialRoll == 12) {
             isWin = false;
-            System.out.println(players + " loses with a roll of " + initialRoll + "!");
-            //add deduction here
+            System.out.println(player + " loses with a roll of " + initialRoll + "!");
+            player.getAccountBalance((int) - bet);//add deduction here
         } else {
             setPoint(initialRoll);
-            System.out.println(players + " sets the point at " + point + ".");
+            System.out.println(player + " sets the point at " + point + ".");
             boolean gameContinues = true;
             while (gameContinues) {
                 int newRoll = rollDice();
                 if (newRoll == point) {
-                    System.out.println(players + " hits the point and wins!");
-                    // add winnings here
+                    System.out.println(player + " hits the point and wins!");
+                    player.getAccountBalance((int) bet);// add winnings here
                     gameContinues = false;
                 } else if (newRoll == 7) {
-                    System.out.println(players + " rolls a 7 and loses.");
-                    //add decuction here.
+                    System.out.println(player + " rolls a 7 and loses.");
+                    player.getAccountBalance((int) - bet);//add decuction here.
                     gameContinues = false;
                 } else {
-                    System.out.println(players + " rolls a " + newRoll + " and keeps rolling.");
+                    System.out.println(player + " rolls a " + newRoll + " and keeps rolling.");
                 }
             }
         }
