@@ -10,11 +10,13 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 public class CrapsPlayer implements PlayerInterface, GamblingPlayerInterface {
     @Override
     public CasinoAccount getArcadeAccount() {
+
         return null;
     }
 
     @Override
     public <SomeReturnType> SomeReturnType play() {
+
         return null;
     }
 

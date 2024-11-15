@@ -4,57 +4,162 @@ package com.github.zipcodewilmington.casino.games.craps;
 import com.github.zipcodewilmington.casino.GamblingInterface;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.mechanics.Dice;
+import com.github.zipcodewilmington.utils.IOConsole;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-public class CrapsGame implements GameInterface, GamblingInterface {
+public class CrapsGame extends Dice implements GameInterface, GamblingInterface {
+    private List<PlayerInterface> players = new ArrayList<>();
+    private double bet;
+    private Random random = new Random();
+    private boolean isWin;
+    private int point;
+    private int accountBalance;
 
+    public CrapsGame(){
+        this.point = 0;
+        this.isWin = false;
+    }
 
     @Override
     public void add(PlayerInterface player) {
-
+        if (player != null && !players.contains(player)) {
+           players.add(player);
+        }
     }
 
     @Override
     public void remove(PlayerInterface player) {
-
-    }
-
-    @Override
-    public void run() {
-
+        players.remove(player);
     }
 
     @Override
     public void playTurn() {
-
+        for (PlayerInterface player : players) {
+            IOConsole console = new IOConsole();
+            console.println(player.getArcadeAccount() + "'s turn:");
+            int rollResult = rollDice();
+            Roll(player, rollResult);
+        }
     }
 
     @Override
     public boolean checkWin() {
-        return false;
+        return isWin;
     }
 
     @Override
     public boolean isGameOver() {
-        return false;
+        return !isWin;
     }
 
     @Override
     public int getRandom() {
-        return 0;
+        return random.nextInt(6) + 1;
     }
+
 
     @Override
     public int getBet() {
-        return 0;
+        try {
+            IOConsole io = new IOConsole();
+            int bet = io.getIntegerInput("How much would you like to wager?");
+            this.bet = bet;
+            accountBalance = accountBalance - bet;
+            if (bet > accountBalance) {
+                System.out.println("Not enough funds available in your account!!");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Not a number or integer");
+        }
+        return (int) bet;
     }
 
     @Override
     public boolean canAfford() {
-        return false;
+        return bet > 0;
     }
 
     @Override
     public int updateBalance() {
-        return 0;
+//        if (isWin) {
+//            int newBalance = getBalance() + bet;
+//
+//        }
+       return 0;
     }
+
+    @Override
+    public void run() {
+        IOConsole console = new IOConsole();
+        console.println("Welcome to Craps!!!!!!!!");
+
+        while(true) {
+            IOConsole io = new IOConsole();
+            getBet();
+            String input = io.getStringInput("Do you want to keep playing? Type YES or NO");
+            if(!input.equalsIgnoreCase("yes")){
+                break;
+            }
+        }
+    }
+
+
+
+    public void setPoint(int point){
+        this.point = point;
+    }
+
+
+    public boolean isWin(int roll){
+        return isWin;
+    }
+
+    private int rollDice() {
+        int dice1 = getRandom();
+        int dice2 = getRandom();
+        int result = dice1 + dice2;
+        System.out.println("You rolled: " + dice1 + " + " + dice2 + " = " + result);
+        return result;
+    }
+
+    private void Roll(PlayerInterface player, int initialRoll) {
+        System.out.println(players + " rolled a " + initialRoll);
+
+        if (initialRoll == 7 || initialRoll == 11) {
+            isWin = true;
+            System.out.println(players + " wins with a roll of " + initialRoll + "!");
+            //add winnings here
+        } else if (initialRoll == 2 || initialRoll == 3 || initialRoll == 12) {
+            isWin = false;
+            System.out.println(players + " loses with a roll of " + initialRoll + "!");
+            //add deduction here
+        } else {
+            setPoint(initialRoll);
+            System.out.println(players + " sets the point at " + point + ".");
+            boolean gameContinues = true;
+            while (gameContinues) {
+                int newRoll = rollDice();
+                if (newRoll == point) {
+                    System.out.println(players + " hits the point and wins!");
+                    // add winnings here
+                    gameContinues = false;
+                } else if (newRoll == 7) {
+                    System.out.println(players + " rolls a 7 and loses.");
+                    //add decuction here.
+                    gameContinues = false;
+                } else {
+                    System.out.println(players + " rolls a " + newRoll + " and keeps rolling.");
+                }
+            }
+        }
+    }
+
+  public List<PlayerInterface> getPlayers() {
+        return players;
+  }
+
+
 }
