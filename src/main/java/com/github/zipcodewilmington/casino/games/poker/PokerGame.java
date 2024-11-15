@@ -28,4 +28,39 @@ public class PokerGame implements GameInterface, GamblingInterface {
 
 
     }
+
+    @Override
+    public void playTurn() {
+
+    }
+
+    @Override
+    public boolean checkWin() {
+        return false;
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public int getRandom() {
+        return 0;
+    }
+
+    @Override
+    public int getBet() {
+        return 0;
+    }
+
+    @Override
+    public boolean canAfford() {
+        return false;
+    }
+
+    @Override
+    public int updateBalance() {
+        return 0;
+    }
 }

@@ -17,4 +17,14 @@ public class PokerPlayer implements PlayerInterface, GamblingPlayerInterface {
     public <SomeReturnType> SomeReturnType play() {
         return null;
     }
+
+    @Override
+    public int placeBet() {
+        return 0;
+    }
+
+    @Override
+    public String checkBalance() {
+        return null;
+    }
 }

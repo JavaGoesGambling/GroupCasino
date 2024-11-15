@@ -112,6 +112,7 @@ public class CrapsGame extends Dice implements GameInterface, GamblingInterface 
         this.point = point;
     }
 
+
     public boolean isWin(int roll){
         return isWin;
     }
@@ -159,5 +160,6 @@ public class CrapsGame extends Dice implements GameInterface, GamblingInterface 
   public List<PlayerInterface> getPlayers() {
         return players;
   }
+
 
 }
