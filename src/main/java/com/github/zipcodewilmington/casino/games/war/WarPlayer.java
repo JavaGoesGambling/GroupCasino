@@ -16,4 +16,9 @@ public class WarPlayer implements PlayerInterface {
     public <SomeReturnType> SomeReturnType play() {
         return null;
     }
+
+    @Override
+    public int getAccountBalance(int bet) {
+        return 0;
+    }
 }

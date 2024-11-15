@@ -18,4 +18,6 @@ public interface PlayerInterface {
      * @return whatever return value you would like
      */
     <SomeReturnType> SomeReturnType play();
+
+    int getAccountBalance(int bet);
 }

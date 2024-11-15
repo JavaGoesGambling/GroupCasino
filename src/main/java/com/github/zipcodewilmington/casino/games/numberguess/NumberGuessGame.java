@@ -21,4 +21,24 @@ public class NumberGuessGame implements GameInterface {
     public void run() {
 
     }
+
+    @Override
+    public void playTurn() {
+
+    }
+
+    @Override
+    public boolean checkWin() {
+        return false;
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return false;
+    }
+
+    @Override
+    public int getRandom() {
+        return 0;
+    }
 }

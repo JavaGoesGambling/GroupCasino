@@ -23,7 +23,8 @@ class CrapsGameTest {
     public  void testInitialWin(){
         CrapsGame game = new CrapsGame();
         int roll = 7;
-       assertTrue(!game.isWin(roll));
+        game.setPoint(0);
+       assertTrue(game.isWin(roll));
    }
 
    @Test
