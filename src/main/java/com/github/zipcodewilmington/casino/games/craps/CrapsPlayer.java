@@ -36,4 +36,14 @@ public class CrapsPlayer implements PlayerInterface, GamblingPlayerInterface {
 
         return null;
     }
+
+    @Override
+    public int placeBet() {
+        return 0;
+    }
+
+    @Override
+    public String checkBalance() {
+        return null;
+    }
 }

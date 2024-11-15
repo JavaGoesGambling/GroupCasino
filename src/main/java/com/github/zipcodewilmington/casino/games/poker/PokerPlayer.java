@@ -18,8 +18,4 @@ public class PokerPlayer implements PlayerInterface, GamblingPlayerInterface {
         return null;
     }
 
-    @Override
-    public int getAccountBalance(int bet) {
-        return 0;
-    }
 }
