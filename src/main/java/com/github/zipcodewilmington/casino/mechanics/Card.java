@@ -29,20 +29,10 @@ public class Card implements Comparable<Card> {
     }
 
     public enum Suit {
-        HEARTS(1),
-        SPADES(2),
-        CLUBS(3),
-        DIAMONDS(4);
-
-        private final int suit;
-
-        Suit(int suit) {
-            this.suit = suit;
-        }
-
-        public int getSuit() {
-            return suit;
-        }
+        HEARTS,
+        SPADES,
+        CLUBS,
+        DIAMONDS;
     }
 
     private Suit suit;
@@ -74,13 +64,9 @@ public class Card implements Comparable<Card> {
 
     @Override
     public int compareTo(Card other) {
-        // Compare first by Rank, then by Suit
-        int rankComparison = Integer.compare(this.rank.getRank(), other.rank.getRank());
-        if (rankComparison != 0) {
-            return rankComparison;
-        }
-        return Integer.compare(this.suit.getSuit(), other.suit.getSuit());
+        return (this.rank.ordinal() - other.rank.ordinal()) + ((this.suit.ordinal() - other.suit.ordinal()) * 13);
     }
+
 
     @Override
     public String toString() {
