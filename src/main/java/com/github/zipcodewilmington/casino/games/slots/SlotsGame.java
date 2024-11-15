@@ -73,4 +73,9 @@ public class SlotsGame implements GameInterface, GamblingInterface {
     public boolean canAfford() {
         return false;
     }
+
+    @Override
+    public int updateBalance() {
+        return 0;
+    }
 }

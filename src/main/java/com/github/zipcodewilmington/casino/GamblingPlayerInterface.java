@@ -10,6 +10,6 @@ public interface GamblingPlayerInterface extends PlayerInterface {
     /**
      * allows gambling player to check their balance
      */
-    int checkBalance();
+    String checkBalance();
 
 }
