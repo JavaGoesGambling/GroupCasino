@@ -20,4 +20,24 @@ public interface GameInterface extends Runnable {
      * specifies how the game will run
      */
     void run();
+
+    /**
+     * player plays turn
+     */
+    void playTurn();
+
+    /**
+     * returns true if player wins
+     */
+    boolean checkWin();
+
+    /**
+     * returns true if game is over
+     */
+    boolean isGameOver();
+
+    /**
+     * method to get random number
+     */
+    int getRandom();
 }
